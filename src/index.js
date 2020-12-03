@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
 import _ from "lodash";
 import {v4} from "uuid";
-import './index.css'
+import './index.scss'
 const item = {
   id: v4(),
   name: "test 1"
@@ -15,16 +15,20 @@ const item2 = {
 }
 export const App = () => {
   const [state, setState] = useState({
+    "open": {
+      title: "Open",
+      items: [item, item2]
+    },
     "todo": {
       title: "Todo",
-      items: [item, item2]
+      items: []
     },
     "in-progress": {
       title: "In Progress",
       items: []
     },
     "done": {
-      title: "Completed",
+      title: "Done",
       items: []
     }
   })
@@ -53,19 +57,47 @@ export const App = () => {
     })
   }
   return (
-    <div className="App">
+<section class="hero">
+      <div className="hero-head">
+          <header class="navbar has-background-white">
+          <div class="container">
+            <div class="navbar-brand">
+              <a class="navbar-item">
+                <img src="https://www.allocloud.com/sites/default/files/2017-06/ALLOcloud_Vertical_PNG.png" alt="Logo"/>
+              </a>
+              <span class="navbar-burger burger" data-target="navbarMenuHeroC">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+            </div>
+            
+          </div>
+        </header>
+      </div>
+        
+      <div className="hero-body">
+          
+      <div className="columns is-desktop"> 
+
+      
         <DragDropContext onDragEnd={handleDragEnd}>
         {_.map(state, (data, key) => {
           return(
-            <div key={key} className={"column"}>
-              <h3>{data.title}</h3>
+            <div key={key} className={"card column m-1"}>
+              <header class="card-header">
+                  <p class="card-header-title">
+                  {data.title}
+                  </p>
+              </header>
+            
               <Droppable droppableId={key}>
                 {(provided, snapshot) => {
                   return(
                     <div
                       ref={provided.innerRef}
                       {...provided.droppableProps}
-                      className={"droppable-col"}
+                      className={"card-content"}
                     >
                       {data.items.map((el, index) => {
                         return(
@@ -74,7 +106,7 @@ export const App = () => {
                               console.log(snapshot)
                               return(
                                 <div
-                                  className={`item ${snapshot.isDragging && "dragging"}`}
+                                  className="notification m-1 is-link"
                                   ref={provided.innerRef}
                                   {...provided.draggableProps}
                                   {...provided.dragHandleProps}
@@ -95,7 +127,9 @@ export const App = () => {
           )
         })}
       </DragDropContext>
-    </div>
+      </div>
+      </div>
+    </section>
   )
 }
 
