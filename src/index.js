@@ -6,12 +6,12 @@ import {v4} from "uuid";
 import './index.scss'
 const item = {
   id: v4(),
-  name: "test 1"
+  name: "Pass technical test"
 }
 
 const item2 = {
   id: v4(),
-  name: "test2"
+  name: "Get recruited "
 }
 export const App = () => {
   const [text, setText] = useState("")
@@ -82,7 +82,7 @@ export const App = () => {
   return (
 <section class="hero">
       <div className="hero-head">
-          <nav class="navbar has-background-white has-shadow" role="navigation" aria-label="main navigation">
+          <nav class="navbar has-background-white p-4" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
               <a class="navbar-item" >
                 <h1 className="title">Allo<span className="has-text-link">scrum</span></h1>
