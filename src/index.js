@@ -14,6 +14,7 @@ const item2 = {
   name: "test2"
 }
 export const App = () => {
+  const [text, setText] = useState("")
   const [state, setState] = useState({
     "open": {
       title: "Open",
@@ -56,27 +57,57 @@ export const App = () => {
       return prev
     })
   }
+
+
+  const addItem = () => {
+    setState(prev => {
+      return {
+        ...prev,
+        open: {
+          title: "Open",
+          items: [
+            {
+              id: v4(),
+              name: text
+            },
+            ...prev.open.items
+          ]
+        }
+      }
+    })
+
+    setText("")
+  }
+
   return (
 <section class="hero">
       <div className="hero-head">
-          <header class="navbar has-background-white">
-          <div class="container">
+          <nav class="navbar has-background-white has-shadow" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-              <a class="navbar-item">
-                <img src="https://www.allocloud.com/sites/default/files/2017-06/ALLOcloud_Vertical_PNG.png" alt="Logo"/>
+              <a class="navbar-item" >
+                <h1 className="title">Allo<span className="has-text-link">scrum</span></h1>
               </a>
-              <span class="navbar-burger burger" data-target="navbarMenuHeroC">
-                <span></span>
-                <span></span>
-                <span></span>
-              </span>
+
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
             </div>
-            
-          </div>
-        </header>
+          </nav>    
       </div>
         
       <div className="hero-body">
+      <div class="field is-grouped mb-6">
+          <p class="control">
+            <input class="input" type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Add a Ticket "/>
+          </p>
+          <p class="control">
+            <a onClick={addItem} class="button is-info">
+              Add
+            </a>
+          </p>
+        </div>
           
       <div className="columns is-desktop"> 
 
