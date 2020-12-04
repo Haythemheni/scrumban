@@ -80,15 +80,15 @@ export const App = () => {
   }
 
   return (
-<section class="hero">
+<section className="hero">
       <div className="hero-head">
-          <nav class="navbar has-background-white p-4" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-              <a class="navbar-item" >
+          <nav className="navbar has-background-white p-4" role="navigation" aria-label="main navigation">
+            <div className="navbar-brand">
+              <a  className="navbar-item" >
                 <h1 className="title">Allo<span className="has-text-link">scrum</span></h1>
               </a>
 
-              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+              <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
@@ -98,12 +98,12 @@ export const App = () => {
       </div>
         
       <div className="hero-body">
-      <div class="field is-grouped mb-6">
-          <p class="control">
-            <input class="input" type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Add a Ticket "/>
+      <div className="field is-grouped mb-6">
+          <p className="control">
+            <input className="input" type="text" value={text} onChange={(e) => setText(e.target.value)} placeholder="Add a Ticket "/>
           </p>
-          <p class="control">
-            <a onClick={addItem} class="button is-info">
+          <p className="control">
+            <a onClick={addItem} className="button is-info">
               Add
             </a>
           </p>
@@ -116,8 +116,8 @@ export const App = () => {
         {_.map(state, (data, key) => {
           return(
             <div key={key} className={"card column m-1"}>
-              <header class="card-header">
-                  <p class="card-header-title">
+              <header className="card-header">
+                  <p className="card-header-title">
                   {data.title}
                   </p>
               </header>
@@ -134,7 +134,6 @@ export const App = () => {
                         return(
                           <Draggable key={el.id} index={index} draggableId={el.id}>
                             {(provided, snapshot) => {
-                              console.log(snapshot)
                               return(
                                 <div
                                   className="notification m-1 is-link"
